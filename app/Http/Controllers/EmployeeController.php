@@ -10,6 +10,18 @@ use Illuminate\Http\JsonResponse;
 class EmployeeController extends Controller
 {
     
+
+ /**
+     * @OA\Get(
+     *     path="/api/employee",
+     *     summary="Test employee endpoint",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(type="object", @OA\Property(property="message", type="string"))
+     *     )
+     * )
+     */
     public function getAllEmployees(Request $request): jsonResponse
     {
        
