@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
-
+use App\Utils\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
 class EmployeeController extends Controller
@@ -17,25 +17,14 @@ class EmployeeController extends Controller
             $employees = Employee::all();
  
             if ($employees->isEmpty()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'No employees found.',
-                    'data' => [],
-                ], 200);
+                return ApiResponse::success([], 'No employees found.');
             }
- 
-            return response()->json([
-                'success' => true,
-                'message' => 'success',
-                'data' => $employees,
-            ], 200);
+            return ApiResponse::success($employees, 'success');
+           
 
         } catch (\Exception $e) { 
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed',
-                'error' => $e->getMessage(),
-            ], 500);
+            return ApiResponse::error("Failed", $e->getMessage());
+        
         }
     }
 
