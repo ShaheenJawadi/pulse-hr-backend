@@ -15,6 +15,6 @@ class JobOffer extends Model
 
     public function candidates()
     {
-        return $this->hasMany(Candidate::class);
+        return $this->hasMany(Candidate::class, 'job_offer_id', 'id');
     }
 }

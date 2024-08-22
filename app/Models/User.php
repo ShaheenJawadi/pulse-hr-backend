@@ -48,24 +48,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function employee(): HasOne
+    public function employee()
     {
-        return $this->hasOne(Employee::class);
+        return $this->hasOne(Employee::class, 'user_id');
     }
 
-    /**
-     * Get the candidate associated with the user.
-     */
-    public function candidate(): HasOne
+    public function candidate()
     {
-        return $this->hasOne(Candidate::class);
+        return $this->hasOne(Candidate::class, 'user_id');
     }
 
-    /**
-     * Get the department that manages the user (if applicable).
-     */
-    public function department(): BelongsTo
-    {
-        return $this->belongsTo(Department::class, 'manager_id');
-    }
+    
 }

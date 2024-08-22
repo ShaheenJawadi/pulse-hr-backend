@@ -14,11 +14,6 @@ class PerformanceReview extends Model
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
-    }
-
-    public function reviewReports()
-    {
-        return $this->hasMany(ReviewReport::class);
+        return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
     }
 }

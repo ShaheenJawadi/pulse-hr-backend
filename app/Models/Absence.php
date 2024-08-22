@@ -13,8 +13,9 @@ class Absence extends Model
         'employee_id', 'start_date', 'end_date', 'type', 'status', 'reason',
     ];
 
+   
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
     }
 }
