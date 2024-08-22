@@ -6,17 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void
+    public function up()
     {
         Schema::table('candidates', function (Blueprint $table) {
-            $table->unsignedBigInteger('job_offer_id')->nullable()->change();
+            $table->unsignedBigInteger('employee_id')->nullable()->after('id'); 
+            $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('set null'); 
         });
     }
 
-    public function down(): void
+    public function down()
     {
         Schema::table('candidates', function (Blueprint $table) {
-            $table->unsignedBigInteger('job_offer_id')->change();
+            $table->dropForeign(['employee_id']); 
+            $table->dropColumn('employee_id'); 
         });
     }
 };
