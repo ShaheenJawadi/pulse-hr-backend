@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('leave_requests', function (Blueprint $table) {
-            $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
     }
 

@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->unsignedBigInteger('manager_id')->nullable()->after('location');
             }
 
-            $table->foreign('manager_id')->references('employee_id')->on('employees')->onDelete('set null');
+            $table->foreign('manager_id')->references('id')->on('employees')->onDelete('set null');
         });
     }
 

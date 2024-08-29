@@ -10,7 +10,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id('employee_id');
+            $table->id('id');
             $table->date('hire_date');
             $table->string('contract_type');
             $table->unsignedBigInteger('department_id')->nullable();

@@ -10,7 +10,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('absences', function (Blueprint $table) {
-            $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('employees')->onDelete('cascade');
         });
     }
 

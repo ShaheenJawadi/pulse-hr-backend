@@ -10,8 +10,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('candidates', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('job_offer_id');
+            $table->id(); 
             $table->string('resume_path');
             $table->enum('status', ['applied', 'interviewed', 'hired', 'rejected']);
             $table->timestamp('submitted_at');
