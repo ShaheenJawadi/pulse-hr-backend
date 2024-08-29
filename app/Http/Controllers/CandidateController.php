@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Candidate;
+use App\Utils\ApiResponse;
 
 
 class CandidateController extends Controller
@@ -28,10 +29,8 @@ class CandidateController extends Controller
     
         $candidate = Candidate::create($validatedData);
     
-        return response()->json([
-            'message' => 'Candidate created successfully!',
-            'candidate' => $candidate
-        ], 201);
+        return ApiResponse::success($candidate, 'Candidate created successfully!');
+        
     }
     
 
@@ -41,10 +40,12 @@ class CandidateController extends Controller
         $candidate = Candidate::find($id);
 
         if (!$candidate) {
-            return response()->json(['status' => 'error', 'message' => 'Candidate not found'], 404);
+        return ApiResponse::error('Candidate not found');
+ 
         }
+        return ApiResponse::success($candidate, ' success ');
 
-        return response()->json($candidate);
+         
     }
 
     public function update(Request $request, $id)
@@ -52,7 +53,8 @@ class CandidateController extends Controller
         $candidate = Candidate::find($id);
 
         if (!$candidate) {
-            return response()->json(['status' => 'error', 'message' => 'Candidate not found'], 404);
+            return ApiResponse::error('Candidate not found');
+
         }
 
         $validatedData = $request->validate([
@@ -66,10 +68,9 @@ class CandidateController extends Controller
 
         $candidate->update($validatedData);
 
-        return response()->json([
-            'message' => 'Candidate updated successfully!',
-            'candidate' => $candidate
-        ]);
+        return ApiResponse::success($candidate, 'Candidate updated successfully!');
+
+  
     }
 
     public function destroy($id)
@@ -77,15 +78,15 @@ class CandidateController extends Controller
         $candidate = Candidate::find($id);
 
         if (!$candidate) {
-            return response()->json(['status' => 'error', 'message' => 'Candidate not found'], 404);
+            return ApiResponse::error('Candidate not found');
+ 
         }
 
         $candidate->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Candidate deleted successfully'
-        ], 200);
+     
+        return ApiResponse::success($candidate,'Candidate deleted successfully');
+
     }
 
 

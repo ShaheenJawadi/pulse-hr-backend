@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Utils\ApiResponse;
 
 class DepartmentController extends Controller
 {
-    
+
     public function index()
     {
         $departments = Department::all();
-        return response()->json($departments);
+        return ApiResponse::success($departments, 'success ');
     }
 
     public function store(Request $request)
@@ -20,17 +21,15 @@ class DepartmentController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
-            'manager_id' => 'nullable|exists:employees,employee_id', 
+            'manager_id' => 'nullable|exists:employees,employee_id',
         ]);
 
         $department = Department::create($validatedData);
 
-        return response()->json([
-            'message' => 'Department created successfully!',
-            'department' => $department
-        ], 201);
+
+        return ApiResponse::success($department, 'Department created successfully!');
     }
-    
+
 
 
     public function update(Request $request, $id)
@@ -38,7 +37,7 @@ class DepartmentController extends Controller
         $department = Department::find($id);
 
         if (!$department) {
-            return response()->json(['status' => 'error', 'message' => 'Department not found'], 404);
+            return ApiResponse::error('Department not found');
         }
 
         $validator = Validator::make($request->all(), [
@@ -48,31 +47,24 @@ class DepartmentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'messages' => $validator->errors()
-            ], 422);
+            return ApiResponse::error('Department not found', $validator->errors());;
         }
 
         $department->update($request->all());
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Department updated successfully',
-            'department' => $department
-        ], 200);
+        return ApiResponse::success($department, 'Department updated successfully!');
     }
 
     public function show($id)
-{
-    $department = Department::find($id);
+    {
+        $department = Department::find($id);
 
-    if (!$department) {
-        return response()->json(['status' => 'error', 'message' => 'Department not found'], 404);
+        if (!$department) {
+            return ApiResponse::error('Department not found');
+        }
+
+        return ApiResponse::success($department, ' success ');
     }
-
-    return response()->json($department, 200);
-}
 
 
     public function destroy($id)
@@ -80,15 +72,12 @@ class DepartmentController extends Controller
         $department = Department::find($id);
 
         if (!$department) {
-            return response()->json(['status' => 'error', 'message' => 'Department not found'], 404);
+            return ApiResponse::error('Department not found');
         }
 
         $department->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Department deleted successfully'
-        ], 200);
-    }
 
+        return ApiResponse::success($department, 'Department deleted successfully');
+    }
 }

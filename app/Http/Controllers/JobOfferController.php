@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobOffer;
+use App\Utils\ApiResponse;
+
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
@@ -11,7 +13,7 @@ class JobOfferController extends Controller
     public function index()
     {
         $jobOffers = JobOffer::all();
-        return response()->json($jobOffers);
+        return ApiResponse::success($jobOffers, 'success ');
     }
 
     public function store(Request $request)
@@ -26,10 +28,8 @@ class JobOfferController extends Controller
 
         $jobOffer = JobOffer::create($validatedData);
 
-        return response()->json([
-            'message' => 'Job offer created successfully!',
-            'job_offer' => $jobOffer
-        ], 201);
+
+        return ApiResponse::success($jobOffer, 'Job offer created successfully!');
     }
 
     public function show($id)
@@ -37,10 +37,9 @@ class JobOfferController extends Controller
         $jobOffer = JobOffer::find($id);
 
         if (!$jobOffer) {
-            return response()->json(['message' => 'Job offer not found'], 404);
+            return ApiResponse::error('Job offer not found ');
         }
-
-        return response()->json($jobOffer);
+        return ApiResponse::success($jobOffer);
     }
 
     public function update(Request $request, $id)
@@ -48,7 +47,7 @@ class JobOfferController extends Controller
         $jobOffer = JobOffer::find($id);
 
         if (!$jobOffer) {
-            return response()->json(['message' => 'Job offer not found'], 404);
+            return ApiResponse::error('Job offer not found ');
         }
 
         $validatedData = $request->validate([
@@ -61,10 +60,8 @@ class JobOfferController extends Controller
 
         $jobOffer->update($validatedData);
 
-        return response()->json([
-            'message' => 'Job offer updated successfully!',
-            'job_offer' => $jobOffer
-        ]);
+
+        return ApiResponse::success($jobOffer, 'Job offer updated successfully!');
     }
 
     public function destroy($id)
@@ -72,14 +69,13 @@ class JobOfferController extends Controller
         $jobOffer = JobOffer::find($id);
 
         if (!$jobOffer) {
-            return response()->json(['message' => 'Job offer not found'], 404);
+            return ApiResponse::error('Job offer not found ');
         }
 
         $jobOffer->delete();
 
-        return response()->json([
-            'message' => 'Job offer deleted successfully'
-        ], 200);
+
+
+        return ApiResponse::success($jobOffer, 'Job offer deleted successfully!');
     }
-    
 }
