@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone');
             $table->date('birthday');
             $table->enum('sexe', ["m", "f"]);
-
+            $table->string('avatar')->nullable();
 
 
 
