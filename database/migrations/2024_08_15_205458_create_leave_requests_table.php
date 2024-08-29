@@ -12,10 +12,11 @@ return new class extends Migration
         Schema::create('leave_requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
-            $table->date('request_date');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('leave_type');
+            $table->string('comments')->nullable();
+
             $table->enum('status', ['approved', 'pending', 'rejected']);
             $table->text('manager_comments')->nullable();
             $table->timestamps();
