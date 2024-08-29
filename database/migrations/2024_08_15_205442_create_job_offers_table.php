@@ -12,9 +12,17 @@ return new class extends Migration
     Schema::create('job_offers', function (Blueprint $table) {
         $table->id();
         $table->string('title');
-        $table->text('description');
+        $table->unsignedBigInteger('department_id')->nullable();
+        $table->string('location');
+        $table->int('min_experience');
+        $table->int('max_experience')->nullable();
+        $table->string('tags')->nullable();
+
+
+
+        $table->text('short_description');
         $table->text('requirements');
-        $table->date('posting_date');
+        $table->date('expire_at');
         $table->enum('status', ['open', 'closed']);
         $table->timestamps();
     });

@@ -25,8 +25,7 @@ return new class extends Migration
             $table->date('hire_date');
             $table->date('end_contract');
 
-            $table->string('contract_type_id');
-            $table->string('contract_type_id');
+            $table->unsignedBigInteger('contract_type_id')->nullable();
 
             $table->unsignedBigInteger('department_id')->nullable();
             $table->unsignedBigInteger('shift_id')->nullable();
