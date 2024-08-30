@@ -14,8 +14,8 @@ return new class extends Migration
         $table->string('title');
         $table->unsignedBigInteger('department_id')->nullable();
         $table->string('location');
-        $table->int('min_experience');
-        $table->int('max_experience')->nullable();
+        $table->integer('min_experience');
+        $table->integer('max_experience')->nullable();
         $table->string('tags')->nullable();
 
 

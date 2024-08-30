@@ -22,8 +22,7 @@ return new class extends Migration
                 $table->time('expected_clock_out_time');
                 $table->enum('status', ['present', 'absent', 'late']); 
                 $table->timestamps();
-         
-            $table->timestamps();
+          
         });
     }
 

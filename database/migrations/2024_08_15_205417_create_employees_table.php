@@ -29,8 +29,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('department_id')->nullable();
             $table->unsignedBigInteger('shift_id')->nullable();
-            $table->unsignedBigInteger('supervisor_id')->nullable();
-            $table->unsignedBigInteger('supervisor_id')->nullable();
+            $table->unsignedBigInteger('supervisor_id')->nullable(); 
             $table->unsignedBigInteger('position_id')->nullable();
 
 
