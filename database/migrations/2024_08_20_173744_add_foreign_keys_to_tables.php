@@ -8,11 +8,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('employees', function (Blueprint $table) {
-            if (!Schema::hasColumn('employees', 'department_id')) {
-                $table->unsignedBigInteger('department_id')->nullable()->after('user_id');
-            }
+       
 
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null'); 
         });
 
         Schema::table('departments', function (Blueprint $table) {
