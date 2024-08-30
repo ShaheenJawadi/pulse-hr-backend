@@ -30,10 +30,11 @@ return new class extends Migration
         Schema::table('employee', function (Blueprint $table) {
 
             $table->dropForeign(['contract_type_id']);
+            $table->dropForeign(['shift_id']);
+            $table->dropForeign(['supervisor_id']);
+            $table->dropForeign(['position_id']);
 
-            $table->dropColumn('shift_id');
-            $table->dropColumn('supervisor_id');
-            $table->dropColumn('position_id');
+ 
         });
     }
 };
