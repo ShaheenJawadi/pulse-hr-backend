@@ -35,6 +35,7 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix('api')
             ->group(function () {
 
+                
 
                 Route::prefix('employee')
                     ->group(base_path('routes/api/employee.php'));
@@ -55,7 +56,8 @@ class RouteServiceProvider extends ServiceProvider
           
                 });
 
- 
+                Route::middleware('api')
+                ->group(base_path('routes/api.php'));
 
 
  

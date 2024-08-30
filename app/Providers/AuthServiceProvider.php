@@ -24,6 +24,6 @@ class AuthServiceProvider extends ServiceProvider
     {
          
 
-      
+        Passport::enablePasswordGrant();
     }
 }
