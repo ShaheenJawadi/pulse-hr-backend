@@ -40,11 +40,7 @@ class Employee extends Model
         return $this->hasMany(PerformanceReview::class, 'employee_id', 'id');
     }
 
-    public function absences()
-    {
-        return $this->hasMany(Absence::class, 'employee_id', 'id');
-    }
-
+   
     public function employeeDocuments()
     {
         return $this->hasMany(EmployeeDocument::class, 'employee_id', 'id');
