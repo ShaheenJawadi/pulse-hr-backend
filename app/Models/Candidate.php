@@ -4,24 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Candidate extends Model
 {
-    use HasFactory;
     protected $fillable = [
-      'employee_id',  'user_id', 'job_offer_id', 'resume_path', 'status', 'submitted_at', 'last_status_change',
+        'full_name', 'email', 'phone', 'actual_position', 'linkedin_profile', 'github_profile', 'motivation',
+        'birthday', 'resume_path', 'status', 'submitted_at', 'last_status_change', 'job_offer_id'
     ];
 
-    public function employee()
+    public function jobOffer(): BelongsTo
     {
-        return $this->belongsTo(Employee::class, 'employee_id', 'id');
-    }
-    public function jobOffer()
-    {
-        return $this->belongsTo(JobOffer::class, 'job_offer_id', 'id');
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(JobOffer::class);
     }
 }

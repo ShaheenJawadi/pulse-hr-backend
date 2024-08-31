@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LeaveRequest extends Model
+class Attendance extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'employee_id', 'start_date', 'end_date', 'leave_type', 'comments', 'status', 'manager_comments' 
+        'employee_id', 'date', 'clock_in_time', 'clock_out_time', 'expected_clock_in_time', 
+        'expected_clock_out_time', 'status'
     ];
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(Employee::class);
     }
 }

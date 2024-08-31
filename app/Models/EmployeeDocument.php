@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class EmployeeDocument extends Model
 {
@@ -13,7 +15,7 @@ class EmployeeDocument extends Model
         'employee_id', 'document_type', 'document_path', 'uploaded_at',
     ];
 
-    public function employee()
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class , 'employee_id');
     }
