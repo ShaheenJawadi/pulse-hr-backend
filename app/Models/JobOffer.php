@@ -10,11 +10,15 @@ class JobOffer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'requirements', 'posting_date', 'status',
+        'title', 'department_id', 'location', 'min_experience', 'max_experience', 'tags', 
+        'short_description', 'requirements', 'expire_at', 'status'
     ];
-
     public function candidates()
     {
         return $this->hasMany(Candidate::class, 'job_offer_id', 'id');
+    }
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }
