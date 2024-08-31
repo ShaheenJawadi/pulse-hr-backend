@@ -10,7 +10,7 @@ class LeaveRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'employee_id', 'request_date', 'start_date', 'end_date', 'leave_type', 'status', 'manager_comments',
+        'employee_id', 'start_date', 'end_date', 'leave_type', 'comments', 'status', 'manager_comments' 
     ];
 
     public function employee()
