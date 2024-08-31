@@ -35,6 +35,9 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix('api')
             ->group(function () {
 
+
+                Route::prefix('auth')
+                ->group(base_path('routes/api/auth.php'));
                 
 
                 Route::prefix('employee')
