@@ -3,6 +3,9 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+ 
+ 
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -12,6 +15,22 @@ class Handler extends ExceptionHandler
      *
      * @var array<int, string>
      */
+
+
+     public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof ValidationException) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'errorType' => 'FormValidation',
+                    'errors' => $exception->errors(),
+                ], 422);
+            }
+        }
+
+        return parent::render($request, $exception);
+    }
     protected $dontFlash = [
         'current_password',
         'password',
