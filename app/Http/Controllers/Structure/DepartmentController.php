@@ -1,15 +1,15 @@
 <?php
-
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Structure;
+use App\Http\Controllers\Controller;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Utils\ApiResponse;
+use App\Utils\ApiResponse; 
+
 
 class DepartmentController extends Controller
 {
-
+////////////////////Depatment////////////////////////
     public function index()
     {
         $departments = Department::all();
@@ -18,6 +18,9 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
+        
+
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
@@ -80,4 +83,6 @@ class DepartmentController extends Controller
 
         return ApiResponse::success($department, 'Department deleted successfully');
     }
+ 
+
 }
