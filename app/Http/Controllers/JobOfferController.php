@@ -20,17 +20,24 @@ class JobOfferController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'requirements' => 'nullable|string',
-            'posting_date' => 'required|date',
-            'status' => 'required|string|max:50',
+            'department_id' => 'required|exists:departments,id',
+            'location' => 'required|string|max:255',
+            'min_experience' => 'nullable|integer',
+            'max_experience' => 'nullable|integer',
+            'tags' => 'nullable|string',
+            'short_description' => 'string',
+            'requirements' => 'string',
+            'expire_at' => 'nullable|date',
+            'status' => 'required|string|in:open,closed',
         ]);
-
+    
         $jobOffer = JobOffer::create($validatedData);
-
-
+    
         return ApiResponse::success($jobOffer, 'Job offer created successfully!');
     }
+
+
+
 
     public function show($id)
     {

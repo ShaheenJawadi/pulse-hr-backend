@@ -32,42 +32,43 @@ class RouteServiceProvider extends ServiceProvider
 
 
             Route::middleware('api')
-            ->prefix('api')
-            ->group(function () {
+                ->prefix('api')
+                ->group(function () {
 
 
-                Route::prefix('auth')
-                ->group(base_path('routes/api/auth.php'));
-                
-                Route::prefix('structure')
-                ->group(base_path('routes/api/structure.php'));
+                    Route::prefix('auth')
+                        ->group(base_path('routes/api/auth.php'));
 
-                Route::prefix('employee')
-                    ->group(base_path('routes/api/employee.php'));
+                    Route::prefix('structure')
+                        ->group(base_path('routes/api/structure.php'));
+
+                    Route::prefix('employee')
+                        ->group(base_path('routes/api/employee.php'));
 
 
 
-                    
-                Route::prefix('user')
-                    ->group(base_path('routes/api/user.php'));
+                    Route::prefix('JobOffer')
+                        ->group(base_path('routes/api/JobOffer.php'));
 
-          
-                   
-                Route::prefix('candidate')
-                    ->group(base_path('routes/api/candidate.php'));
-                
-                Route::prefix('JobOffer')
-                    ->group(base_path('routes/api/JobOffer.php'));
-          
-          
-          
+
+
+
+
+                        
+                    Route::prefix('user')
+                        ->group(base_path('routes/api/user.php'));
+
+
+
+                    Route::prefix('candidate')
+                        ->group(base_path('routes/api/candidate.php'));
                 });
 
-                Route::middleware('api')
+            Route::middleware('api')
                 ->group(base_path('routes/api.php'));
 
 
- 
+
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
