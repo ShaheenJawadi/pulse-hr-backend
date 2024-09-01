@@ -16,6 +16,19 @@ class JobOfferController extends Controller
         return ApiResponse::success($jobOffers, 'success ');
     }
 
+    public function show($id)
+    {
+        $jobOffer = JobOffer::with('candidates')->find($id);
+
+ 
+        if (!$jobOffer) {
+            return ApiResponse::error(null, 'Job offer not found', 404);
+        }
+    
+        
+        return ApiResponse::success($jobOffer, 'Job offer retrieved successfully');
+    }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -39,15 +52,7 @@ class JobOfferController extends Controller
 
 
 
-    public function show($id)
-    {
-        $jobOffer = JobOffer::find($id);
-
-        if (!$jobOffer) {
-            return ApiResponse::error('Job offer not found ');
-        }
-        return ApiResponse::success($jobOffer);
-    }
+   
 
     public function update(Request $request, $id)
     {
