@@ -39,12 +39,12 @@ class EmployeeController extends Controller
             'hire_date' => 'required|string',
             'contract_type_id' => 'required|numeric',
             'end_contract' => 'nullable|string',
-            'additional_infos' => 'required|array',
-            'additional_infos.contactName' => 'required|string',
-            'additional_infos.contactRelation' => 'required|string',
-            'additional_infos.contactPhone' => 'required|string',
-            'additional_infos.maritalStatus' => 'required|string',
-            'additional_infos.bloodGroup' => 'required|string',
+            'additional_infos' => 'nullable|array',
+            'additional_infos.contactName' => 'nullable|string',
+            'additional_infos.contactRelation' => 'nullable|string',
+            'additional_infos.contactPhone' => 'nullable|string',
+            'additional_infos.maritalStatus' => 'nullable|string',
+            'additional_infos.bloodGroup' => 'nullable|string',
         ]);
         
         $user = User::create([
