@@ -11,7 +11,7 @@ class JobOffer extends Model
 
     protected $fillable = [
         'title', 'department_id', 'location', 'min_experience', 'max_experience', 'tags', 
-        'short_description', 'requirements', 'expire_at', 'status'
+        'short_description', 'requirements', 'expire_at', 'status','contract_type_id'
     ];
     public function candidates()
     {
@@ -20,5 +20,9 @@ class JobOffer extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+    public function contractType()
+    {
+        return $this->belongsTo(WorkContractType::class);
     }
 }

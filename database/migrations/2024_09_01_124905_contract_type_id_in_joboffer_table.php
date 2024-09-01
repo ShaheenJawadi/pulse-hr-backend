@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('employees', function (Blueprint $table) {
+        Schema::table('job_offers', function (Blueprint $table) {
             //
+            $table->unsignedBigInteger('contract_type_id')->nullable();
             $table->foreign('contract_type_id')->references('id')->on('work_contract_type')->onDelete('set null');
-            $table->foreign('shift_id')->references('id')->on('work_shifts')->onDelete('set null');
-            $table->foreign('supervisor_id')->references('id')->on('employees')->onDelete('set null');
-            $table->foreign('position_id')->references('id')->on('work_positions')->onDelete('set null');
+           
            
         });
  
@@ -30,10 +29,7 @@ return new class extends Migration
         Schema::table('employee', function (Blueprint $table) {
 
             $table->dropForeign(['contract_type_id']);
-            $table->dropForeign(['shift_id']);
-            $table->dropForeign(['supervisor_id']);
-            $table->dropForeign(['position_id']);
-
+            
  
         });
     }
