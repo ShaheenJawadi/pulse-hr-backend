@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('birthday');
 
             $table->string('resume_path');
-            $table->enum('status', ['applied', 'interviewed', 'hired', 'rejected']);
+            $table->enum('status', ['pending','reviewed','accepted','rejected','shortlisted']);
             $table->timestamp('submitted_at');
             $table->timestamp('last_status_change')->nullable();
             $table->timestamps();
