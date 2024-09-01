@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\User;
+
 use App\Utils\ApiResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -36,7 +39,6 @@ class EmployeeController extends Controller
             'hire_date' => 'required|string',
             'contract_type_id' => 'required|numeric',
             'end_contract' => 'nullable|string',
-            'user_id' => 'nullable|numeric',
             'additional_infos' => 'required|array',
             'additional_infos.contactName' => 'required|string',
             'additional_infos.contactRelation' => 'required|string',
@@ -45,8 +47,17 @@ class EmployeeController extends Controller
             'additional_infos.bloodGroup' => 'required|string',
         ]);
         
+        $user = User::create([
+            'name' => $validatedData['name'] . ' ' . $validatedData['last_name'],
+            'email' => $validatedData['email'],
+            'role' => 'employee',
+            'password' => Hash::make('test1234'),
+        ]);
+     
+        $employee = Employee::create(array_merge($validatedData, [
+            'user_id' => $user->id,  
+        ]));
         
-        $employee = Employee::create($validatedData);
         
         return ApiResponse::success($employee, 'Employee created successfully!');
          
