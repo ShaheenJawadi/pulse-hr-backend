@@ -11,9 +11,7 @@ class PositionController extends Controller
 
     public function store(Request $request)
     {
-        
-
-
+    
         $validatedData = $request->validate([
             'designation' => 'required|string|max:255', 
         ]);
@@ -24,4 +22,10 @@ class PositionController extends Controller
         return ApiResponse::success($department, 'Poste created successfully!');
     }
 
+
+    public function index()
+    {
+        $departments = WorkPosition::all();
+        return ApiResponse::success($departments, 'success ');
+    }
 }

@@ -24,4 +24,6 @@ Route::prefix('department')->group(function () {
 Route::prefix('position')->group(function () {
 
     Route::post('/add', [PositionController::class, 'store']);
+    Route::get('/lister', [PositionController::class, 'index']);
+
 });
