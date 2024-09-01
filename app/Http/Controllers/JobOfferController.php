@@ -24,10 +24,10 @@ class JobOfferController extends Controller
             'location' => 'required|string|max:255',
             'min_experience' => 'nullable|integer',
             'max_experience' => 'nullable|integer',
-            'tags' => 'nullable|string',
+            'tags' => 'nullable|array',
             'short_description' => 'string',
             'requirements' => 'string',
-            'expire_at' => 'nullable|date',
+            'expire_at' => 'nullable|string',
             'status' => 'required|string|in:open,closed',
         ]);
     

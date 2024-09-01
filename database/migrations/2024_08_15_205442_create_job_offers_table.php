@@ -22,7 +22,7 @@ return new class extends Migration
 
         $table->text('short_description');
         $table->text('requirements');
-        $table->date('expire_at');
+        $table->date('expire_at')->nullable();;;
         $table->enum('status', ['open', 'closed']);
         $table->timestamps();
     });
