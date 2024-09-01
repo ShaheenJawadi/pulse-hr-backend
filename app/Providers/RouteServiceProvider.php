@@ -52,7 +52,8 @@ class RouteServiceProvider extends ServiceProvider
 
 
 
-
+                        Route::prefix('publicListing')
+                        ->group(base_path('routes/api/publicListing.php'));
 
                         
                     Route::prefix('user')
