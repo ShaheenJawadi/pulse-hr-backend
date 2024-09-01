@@ -15,9 +15,9 @@ return new class extends Migration
             $table->string('email'); 
             $table->string('phone'); 
             $table->string('actual_position'); 
-            $table->string('linkedin_profile'); 
-            $table->string('github_profile'); 
-            $table->text('motivation'); 
+            $table->string('linkedin_profile')->nullable();
+            $table->string('github_profile')->nullable();
+            $table->text('motivation')->nullable(); 
 
 
 

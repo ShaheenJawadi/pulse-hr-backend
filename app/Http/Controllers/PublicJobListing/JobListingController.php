@@ -24,13 +24,17 @@ class JobListingController extends Controller
             'motivation' => 'nullable|string',
             'birthday' => 'nullable|date',
             'resume_path' => 'nullable|string|max:255',
-            'status' => 'required|string|in:pending,accepted,rejected,shortlisted',
+         
             'job_offer_id' => 'required|exists:job_offers,id',
         ]);
      
         $validatedData['submitted_at'] = now();
         $validatedData['status'] = 'pending';
         $validatedData['last_status_change'] = now();
+        $validatedData['resume_path'] = "todo";
+
+
+        
      
         $candidate = Candidate::create($validatedData);
      
