@@ -24,7 +24,7 @@ class DepartmentController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
-            'manager_id' => 'nullable|exists:employees,employee_id',
+            'manager_id' => 'nullable|exists:employees,id',
         ]);
 
         $department = Department::create($validatedData);
