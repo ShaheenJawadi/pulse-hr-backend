@@ -10,6 +10,53 @@ use Illuminate\Http\JsonResponse;
 
 class EmployeeController extends Controller
 {
+
+
+
+
+
+
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+       
+            'name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+            'birthday' => 'required|string',
+            'sexe' => 'required|in:h,f',
+            'avatar' => 'nullable',
+         
+            'department_id' => 'required|numeric',
+            'position_id' => 'required|numeric',
+            'supervisor_id' => 'nullable|numeric',
+            'shift_id' => 'required|numeric',
+            'hire_date' => 'required|string',
+            'contract_type_id' => 'required|numeric',
+            'end_contract' => 'nullable|string',
+            'user_id' => 'nullable|numeric',
+            'additional_infos' => 'required|array',
+            'additional_infos.contactName' => 'required|string',
+            'additional_infos.contactRelation' => 'required|string',
+            'additional_infos.contactPhone' => 'required|string',
+            'additional_infos.maritalStatus' => 'required|string',
+            'additional_infos.bloodGroup' => 'required|string',
+        ]);
+        
+        
+        $employee = Employee::create($validatedData);
+        
+        return ApiResponse::success($employee, 'Employee created successfully!');
+         
+    }
+
+
+
+
+
+
     
     public function getAllEmployees(Request $request): jsonResponse
     {
@@ -36,20 +83,7 @@ class EmployeeController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'hire_date' => 'required|date',
-            'contract_type' => 'required|string',
-            'department_id' => 'required|exists:departments,id',
-            'position' => 'required|string',
-        ]);
-
-        $employee = Employee::create($validatedData);
-
-        return response()->json($employee, 201);
-    }
+  
 
 
     public function show(string $id)
