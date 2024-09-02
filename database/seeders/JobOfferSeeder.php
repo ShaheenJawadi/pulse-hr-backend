@@ -11,6 +11,7 @@ class JobOfferSeeder extends Seeder
     {
         JobOffer::create([
             'title' => 'Senior Developer',
+            'slug' => 'senior-developer',
             'department_id' => 2, 
             'location' => 'Remote',
             'min_experience' => 5,

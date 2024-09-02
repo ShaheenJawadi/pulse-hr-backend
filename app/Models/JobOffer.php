@@ -10,7 +10,7 @@ class JobOffer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'department_id', 'location', 'min_experience', 'max_experience', 'tags', 
+        'title','slug', 'department_id', 'location', 'min_experience', 'max_experience', 'tags', 
         'short_description', 'requirements', 'expire_at', 'status','contract_type_id'
     ];
 

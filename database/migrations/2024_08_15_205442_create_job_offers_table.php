@@ -12,6 +12,8 @@ return new class extends Migration
     Schema::create('job_offers', function (Blueprint $table) {
         $table->id();
         $table->string('title');
+        $table->string('slug');
+
         $table->unsignedBigInteger('department_id')->nullable();
         $table->string('location');
         $table->integer('min_experience');
