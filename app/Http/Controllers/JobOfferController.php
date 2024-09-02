@@ -6,6 +6,7 @@ use App\Models\JobOffer;
 use App\Utils\ApiResponse;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class JobOfferController extends Controller
 {
@@ -43,6 +44,7 @@ class JobOfferController extends Controller
             'expire_at' => 'nullable|string',
             'status' => 'required|string|in:open,closed',
         ]);
+        $validatedData['slug'] = Str::slug($validatedData['title']);
     
         $jobOffer = JobOffer::create($validatedData);
     
