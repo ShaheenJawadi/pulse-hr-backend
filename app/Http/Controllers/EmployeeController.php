@@ -43,9 +43,9 @@ class EmployeeController extends Controller
             'department_id' => 'required|numeric',
             'position_id' => 'required|numeric',
             'supervisor_id' => 'nullable|numeric',
-            'shift_id' => 'required|numeric',
+           /*  'shift_id' => 'required|numeric', */
             'hire_date' => 'required|string',
-            'contract_type_id' => 'required|numeric',
+            /* 'contract_type_id' => 'required|numeric', */
             'end_contract' => 'nullable|string',
             'additional_infos' => 'nullable|array',
             'additional_infos.contactName' => 'nullable|string',
@@ -64,6 +64,8 @@ class EmployeeController extends Controller
      
         $employee = Employee::create(array_merge($validatedData, [
             'user_id' => $user->id,  
+            'shift_id' =>1,  
+'contract_type_id' =>1,  
         ]));
         
         
