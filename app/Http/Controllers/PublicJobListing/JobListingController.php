@@ -53,5 +53,15 @@ class JobListingController extends Controller
     }
 
 
+    public function show($slug)
+    {
+        $jobOffer = JobOffer::where('slug', $slug)->first();
+    
+        if (!$jobOffer) {
+            return ApiResponse::error(null, 'Job offer not found', 404);
+        }
+    
+        return ApiResponse::success($jobOffer, 'Job offer retrieved successfully');
+    }
  
 }

@@ -15,4 +15,5 @@ Route::prefix('apply')->group(function () {
 Route::get('/lister', [JobListingController::class, 'index']);   
 
 
+Route::get('/show/{slug}', [JobListingController::class, 'show']); 
  
