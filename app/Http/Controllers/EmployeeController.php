@@ -16,6 +16,14 @@ class EmployeeController extends Controller
 
 
 
+    public function index()
+    {
+        $employees = Employee::with(['supervisor', 'department'])->get();
+       
+        
+        return ApiResponse::success($employees, 'success ');
+    }
+
 
 
 
@@ -65,6 +73,9 @@ class EmployeeController extends Controller
 
 
 
+    ////////////////////////
+
+
 
 
 
@@ -87,11 +98,6 @@ class EmployeeController extends Controller
         }
     }
 
-    public function index()
-    {
-        $employees = Employee::with(['user', 'department'])->get();
-        return response()->json($employees);
-    }
 
 
   
