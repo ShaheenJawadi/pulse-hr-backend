@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\PublicJobListing;
 use App\Http\Controllers\Controller; 
+use App\Models\JobOffer;
 
 
 use App\Models\Candidate;
@@ -39,6 +40,16 @@ class JobListingController extends Controller
         $candidate = Candidate::create($validatedData);
      
         return ApiResponse::success($candidate, 'Candidate application submitted successfully!');
+    }
+
+
+
+
+    
+    public function index()
+    {
+        $jobOffers = JobOffer::all();
+        return ApiResponse::success($jobOffers, 'success ');
     }
 
 

@@ -12,4 +12,7 @@ Route::prefix('apply')->group(function () {
 
 
 
+Route::get('/lister', [JobListingController::class, 'index']);   
+
+
  
