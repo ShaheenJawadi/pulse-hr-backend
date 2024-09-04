@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             CandidateSeeder::class,
             LeaveRequestSeeder::class, 
             KanbanTagsSeeder::class,
+            KanbanColumnsSeeder::class,
+            KanbanTasksSeeder::class,
         ]);
     }
 }
