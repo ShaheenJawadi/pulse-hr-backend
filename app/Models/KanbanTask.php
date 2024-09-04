@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class KanbanTask extends Model
 {
     use HasFactory;
-    protected $fillable = ['column_id', 'title', 'tags', 'assigned_by', 'assigned_to'];
+    protected $fillable = ['column_id', 'title', 'displayOrder', 'assigned_by', 'assigned_to'];
 
     public function column()
     {
@@ -23,5 +23,21 @@ class KanbanTask extends Model
     public function assignedTo()
     {
         return $this->belongsTo(Employee::class, 'assigned_to');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(KanbanTags::class, 'kanban_task_tag');
+    }
+
+
+     /**
+     * Get the tags  
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTagsAttribute()
+    {
+        return $this->tags()->get();
     }
 }

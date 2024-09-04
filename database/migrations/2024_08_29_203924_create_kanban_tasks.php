@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('kanban_tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('column_id');
-            $table->string('title');
-            $table->json('tags'); // Store tags as JSON
+            $table->string('title'); 
             $table->timestamps();
             $table->unsignedBigInteger('assigned_by')->nullable(); 
             $table->unsignedBigInteger('assigned_to')->nullable(); 
