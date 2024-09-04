@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             JobOfferSeeder::class,
             CandidateSeeder::class,
-            LeaveRequestSeeder::class,
+            LeaveRequestSeeder::class, 
+            KanbanTagsSeeder::class,
         ]);
     }
 }
