@@ -25,7 +25,7 @@ class UtilsController extends Controller
 
     public function updateKanban(Request $request)
     {
-        $data = $request->input('data');  
+        $data = $request->input();  
 
         foreach ($data as $columnData) {
           
@@ -41,7 +41,7 @@ class UtilsController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Data updated successfully'], 200);
+        return ApiResponse::success('Data updated successfully', 'success '); 
     }
     
 }

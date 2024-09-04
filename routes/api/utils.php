@@ -10,6 +10,6 @@ use App\Http\Controllers\UtilsController;
 Route::prefix('kanban')->group(function () {
 
     Route::get('/lister', [UtilsController::class, 'kanbanLister']);   
-    Route::post('/update/{id}', [UtilsController::class, 'updateKanban']);   
+    Route::post('/update', [UtilsController::class, 'updateKanban']);   
 
 });
